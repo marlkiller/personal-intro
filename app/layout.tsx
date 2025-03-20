@@ -11,8 +11,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>Personal Introduction</title>
-        <meta name="description" content="Personal introduction page" />
+        <title>marlkiller - Software Engineer</title>
+        <meta name="description" content="Personal website of marlkiller, a software engineer passionate about reverse engineering and open source." />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

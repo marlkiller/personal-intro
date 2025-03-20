@@ -1,23 +1,39 @@
 export type Language = "en" | "zh"
 
-export interface Song {
-  title: string
-  artist: string
-  url: string
-  cover?: string
+
+export const config = {
+  github: {
+    url: "https://github.com/marlkiller/personal-intro"
+  },
+  music: {
+    url: "https://music.163.com/outchain/player?type=0&id=102600752&auto=0&height=430",
+    width: 300,
+    height: 450
+  },
+  donate: {
+    wechat: "/wechat-qr.png",
+    alipay: "/alipay-qr.png",
+    qrSize: 220  // 增加二维码尺寸
+  }
 }
 
 export const content = {
   en: {
     personalInfo: {
-      name: "John Doe",
+      name: "marlkiller",
       title: "Software Engineer",
-      bio: "Passionate about open source development and sharing knowledge through technical writing. Specialized in frontend technologies with 5+ years of experience building web applications.",
-      location: "San Francisco, CA",
-      email: "john.doe@example.com",
-      github: "https://github.com/johndoe",
-      twitter: "https://twitter.com/johndoe",
-      linkedin: "https://linkedin.com/in/johndoe",
+      // bio 已删除
+      location: "BJ, China",
+      email: "marlkiller@voidm.com",
+      github: "https://github.com/marlkiller",
+      twitter: "",
+      linkedin: "",
+      skills: ["C/C++", "Assembly", "Reverse Engineering", "JAVA", "HOOK", "Python"],
+      interests: [
+        { icon: "", text: "The development engineer of interest" },
+        { icon: "", text: "Want to travel the world" },
+        { icon: "", text: "Open-source software developer" }
+      ],
     },
     sections: {
       projects: "Open Source Projects",
@@ -25,17 +41,34 @@ export const content = {
       viewOnGithub: "View on GitHub",
       readArticle: "Read Article",
     },
+    buttons: {
+      sourceCode: "Source Code",
+      music: "My Music",
+      darkMode: "Dark Mode",
+      lightMode: "Light Mode",
+      language: "Switch to Chinese",
+      donate: "Buy Me a Coffee",
+      donateText: "Would you buy me a coffee?",
+      wechat: "WeChat Pay",
+      alipay: "Alipay"
+    }
   },
   zh: {
     personalInfo: {
-      name: "张三",
+      name: "木阿马",
       title: "软件工程师",
-      bio: "热衷于开源开发和通过技术文章分享知识。专注于前端技术，拥有5年以上构建Web应用程序的经验。",
+      // bio 已删除
       location: "北京，中国",
-      email: "zhangsan@example.com",
-      github: "https://github.com/zhangsan",
-      twitter: "https://twitter.com/zhangsan",
-      linkedin: "https://linkedin.com/in/zhangsan",
+      email: "marlkiller@voidm.com",
+      github: "https://github.com/marlkiller",
+      twitter: "",
+      linkedin: "",
+      skills: ["C/C++", "反汇编", "逆向分析", "JAVA", "HOOK", "Python"],
+      interests: [
+        { icon: "", text: "一个兴趣使然的开发" },
+        { icon: "", text: "想要环游世界" },
+        { icon: "", text: "开源软件开发者" }
+      ],
     },
     sections: {
       projects: "开源项目",
@@ -43,108 +76,66 @@ export const content = {
       viewOnGithub: "在GitHub上查看",
       readArticle: "阅读文章",
     },
+    buttons: {
+      sourceCode: "查看源码",
+      music: "我的音乐",
+      darkMode: "暗色模式",
+      lightMode: "亮色模式",
+      language: "切换到英文",
+      donate: "请我喝咖啡",
+      donateText: "请我喝一杯咖啡吗？",
+      wechat: "微信支付",
+      alipay: "支付宝"
+    }
+  }
+}
+
+
+export const projects = [
+  {
+    title: "dylib_dobby_hook",
+    description: "A macOS dylib project , aimed at enhancing and extending the functionality of target software.",
+    technologies: ["objective-c", "hook", "inject"],
+    url: "https://github.com/marlkiller/dylib_dobby_hook",
   },
-}
+  {
+    title: "t66y_auto_register",
+    description: "草榴社区邀请码扫码自动注册脚本",
+    technologies: ["python", "t66y", "爬虫"],
+    url: "https://github.com/marlkiller/t66y_auto_register",
+  },
+  {
+    title: "d3dhook_imgui",
+    description: "d3d opengl hook imgui x86/x64",
+    technologies: ["c/c++", "d3d", "detours", "imgui"],
+    url: "https://github.com/marlkiller/d3dhook_imgui",
+  },
+]
 
-export const projects = {
-  en: [
-    {
-      title: "React Component Library",
-      description: "A collection of reusable React components with TypeScript support",
-      technologies: ["React", "TypeScript", "Storybook"],
-      url: "https://github.com/johndoe/react-components",
-    },
-    {
-      title: "Data Visualization Tool",
-      description: "Interactive data visualization library for complex datasets",
-      technologies: ["D3.js", "React", "JavaScript"],
-      url: "https://github.com/johndoe/data-viz",
-    },
-    {
-      title: "CLI Task Manager",
-      description: "Command-line productivity tool for managing tasks and projects",
-      technologies: ["Node.js", "TypeScript", "Commander.js"],
-      url: "https://github.com/johndoe/task-cli",
-    },
-  ],
-  zh: [
-    {
-      title: "React组件库",
-      description: "一个支持TypeScript的可重用React组件集合",
-      technologies: ["React", "TypeScript", "Storybook"],
-      url: "https://github.com/zhangsan/react-components",
-    },
-    {
-      title: "数据可视化工具",
-      description: "用于复杂数据集的交互式数据可视化库",
-      technologies: ["D3.js", "React", "JavaScript"],
-      url: "https://github.com/zhangsan/data-viz",
-    },
-    {
-      title: "命令行任务管理器",
-      description: "用于管理任务和项目的命令行生产力工具",
-      technologies: ["Node.js", "TypeScript", "Commander.js"],
-      url: "https://github.com/zhangsan/task-cli",
-    },
-  ],
-}
-
-export const articles = {
-  en: [
-    {
-      title: "Building Accessible Web Applications",
-      date: "March 15, 2023",
-      excerpt:
-        "A comprehensive guide to creating web applications that are accessible to everyone, including best practices and common pitfalls to avoid.",
-      url: "https://dev.to/johndoe/building-accessible-web-applications",
-    },
-    {
-      title: "State Management in React: A Practical Guide",
-      date: "February 2, 2023",
-      excerpt:
-        "Comparing different state management approaches in React applications, from Context API to Redux and Zustand.",
-      url: "https://dev.to/johndoe/state-management-in-react",
-    },
-    {
-      title: "Optimizing API Performance with GraphQL",
-      date: "December 10, 2022",
-      excerpt:
-        "How to leverage GraphQL to improve API performance and reduce over-fetching in modern web applications.",
-      url: "https://dev.to/johndoe/optimizing-api-performance-with-graphql",
-    },
-    {
-      title: "Implementing Authentication in Next.js Applications",
-      date: "October 5, 2022",
-      excerpt:
-        "A step-by-step tutorial on implementing secure authentication in Next.js applications using NextAuth.js.",
-      url: "https://dev.to/johndoe/implementing-authentication-in-nextjs",
-    },
-  ],
-  zh: [
-    {
-      title: "构建无障碍Web应用程序",
-      date: "2023年3月15日",
-      excerpt: "创建适合所有人使用的Web应用程序的综合指南，包括最佳实践和常见陷阱的避免。",
-      url: "https://dev.to/zhangsan/building-accessible-web-applications",
-    },
-    {
-      title: "React中的状态管理：实用指南",
-      date: "2023年2月2日",
-      excerpt: "比较React应用程序中不同的状态管理方法，从Context API到Redux和Zustand。",
-      url: "https://dev.to/zhangsan/state-management-in-react",
-    },
-    {
-      title: "使用GraphQL优化API性能",
-      date: "2022年12月10日",
-      excerpt: "如何利用GraphQL提高API性能并减少现代Web应用程序中的过度获取。",
-      url: "https://dev.to/zhangsan/optimizing-api-performance-with-graphql",
-    },
-    {
-      title: "在Next.js应用程序中实现身份验证",
-      date: "2022年10月5日",
-      excerpt: "使用NextAuth.js在Next.js应用程序中实现安全身份验证的分步教程。",
-      url: "https://dev.to/zhangsan/implementing-authentication-in-nextjs",
-    },
-  ],
-}
+export const articles = [
+  {
+    title: "lldb 调试 tableplus + license 逆向 + python3 keygen(win/mac 通杀)",
+    date: "2025-03-14",
+    excerpt: "之前做过该软件的分析, 不过似乎作者与我心有灵犀, 之前的 patch 已经过期了;今天试一下新的方案, 逆向 license 文件的加解密, 并且完成 keygen",
+    url: "https://www.52pojie.cn/thread-2014469-1-1.html",
+  },
+  {
+    title: "electron asar 加密包解压 偏移修复",
+    date: "2025-02-12",
+    excerpt: "众所周知, electron 封装的可执行文件, 依赖 app.asar , 通常要逆向的话, 需要执行 asar 相关命令来解压归档文件, 然后在进行修改操作;",
+    url: "https://www.52pojie.cn/thread-2005677-1-1.html",
+  },
+  {
+    title: "Surge for MAC license 签名逆向/伪造",
+    date: "2024-05-09",
+    excerpt: "众所周知, 某工具 的 license 是存在本地的 macOS 文件系统的扩展属性（extended attribute）中的,以此为切入点, 我们开始逆向分析;",
+    url: "https://www.52pojie.cn/thread-1922056-1-1.html",
+  },
+  {
+    title: "JetBrains 全家桶系列 2024 破解思路....",
+    date: "2024-04-29",
+    excerpt: "JetBrains 是一家全球性软件公司，专门为软件开发者和团队打造可以提升工作效率的智能工具。总部位于捷克共和国布拉格，在多个国家/地区设有研发实验室和销售办事处。",
+    url: "https://www.52pojie.cn/thread-1919098-1-1.html",
+  },
+]
 

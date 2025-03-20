@@ -2,29 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
   }
+}
 
-  body {
-    @apply bg-background text-foreground;
+html {
+  scroll-behavior: smooth;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glass-card {
+  @apply backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 
+         border border-white/20 dark:border-gray-700/20 
+         shadow-lg hover:shadow-xl;
+}
+
+.tech-tag {
+  @apply px-3 py-1.5 rounded-full text-xs font-medium
+         bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 
+         dark:from-primary/20 dark:via-purple-500/20 dark:to-blue-500/20
+         hover:scale-105 transition-all duration-300;
+}
+
+.social-link {
+  @apply flex items-center gap-2 hover:text-primary transition-all duration-300
+         hover:scale-105;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.hover-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.button-style {
+  @apply flex items-center gap-2 px-3 py-2 rounded-xl
+         bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm
+         border border-gray-200/50 dark:border-gray-700/50
+         text-sm text-gray-700 dark:text-gray-300
+         shadow-sm hover:shadow-md
+         transition-all duration-300
+         hover:scale-105 hover:bg-white dark:hover:bg-gray-800;
+}
+
+
+@keyframes shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-shine {
+  background: linear-gradient(120deg, 
+    transparent 0%, 
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shine 8s linear infinite;
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
