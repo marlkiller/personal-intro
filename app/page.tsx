@@ -49,7 +49,7 @@ export default function Home() {
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <h3 className="text-lg font-medium text-center">{personalInfo.name}</h3>
+              {/* <h3 className="text-lg font-medium text-center">{personalInfo.name}</h3> */}
             </div>
             
             <div className="flex-1">
