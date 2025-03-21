@@ -37,7 +37,7 @@ export function ToggleButtons() {
         </button>
 
         <button 
-          onClick={() => window.open(config.github.url, '_blank')}
+          onClick={() => window.open(config.sourceCode, '_blank')}
           className="button-style group" 
           title={buttons.sourceCode}
         >

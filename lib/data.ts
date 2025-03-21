@@ -2,9 +2,7 @@ export type Language = "en" | "zh"
 
 
 export const config = {
-  github: {
-    url: "https://github.com/marlkiller/personal-intro"
-  },
+  sourceCode: "https://github.com/marlkiller/personal-intro",
   music: {
     url: "https://music.163.com/outchain/player?type=0&id=102600752&auto=0&height=430",
     width: 300,
@@ -91,27 +89,6 @@ export const content = {
 }
 
 
-export const projects = [
-  {
-    title: "dylib_dobby_hook",
-    description: "A macOS dylib project , aimed at enhancing and extending the functionality of target software.",
-    technologies: ["objective-c", "hook", "inject"],
-    url: "https://github.com/marlkiller/dylib_dobby_hook",
-  },
-  {
-    title: "t66y_auto_register",
-    description: "草榴社区邀请码扫码自动注册脚本",
-    technologies: ["python", "t66y", "爬虫"],
-    url: "https://github.com/marlkiller/t66y_auto_register",
-  },
-  {
-    title: "d3dhook_imgui",
-    description: "d3d opengl hook imgui x86/x64",
-    technologies: ["c/c++", "d3d", "detours", "imgui"],
-    url: "https://github.com/marlkiller/d3dhook_imgui",
-  },
-]
-
 export const articles = [
   {
     title: "lldb 调试 tableplus + license 逆向 + python3 keygen(win/mac 通杀)",
@@ -138,4 +115,27 @@ export const articles = [
     url: "https://www.52pojie.cn/thread-1919098-1-1.html",
   },
 ]
+
+
+export const projects = {
+  useLocalProjects: false,  // 是否使用本地项目数据
+  projects: [
+    {
+      title: "dylib_dobby_hook",
+      description: "A macOS dylib project , aimed at enhancing and extending the functionality of target software.",
+      technologies: ["macos", "hook", "inject", "dylib"],
+      url: "https://github.com/marlkiller/dylib_dobby_hook",
+      stars: 277,
+      forks: 79
+    },
+    {
+      title: "Sample-Project",
+      description: "A github sample project",
+      technologies: ["JavaScript", "Python"],
+      url: "https://github.com/yourusername/code-snippets",
+      stars: 9999,
+      forks: 9999
+    }
+  ]
+}
 
