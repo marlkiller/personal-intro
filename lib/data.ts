@@ -91,6 +91,12 @@ export const content = {
 
 export const articles = [
   {
+    title: "Hopper Disassembler for macOS 5.18.1 CracKed U2B [2025.4.26 更新]",
+    date: "2025-04-26",
+    excerpt: "🕵️ 致敬原作者精妙的混淆技术与暗桩设计，令人拍案叫绝。包括但不限于  ....",
+    url: "https://www.52pojie.cn/thread-2027339-1-1.html",
+  },
+  {
     title: "lldb 调试 tableplus + license 逆向 + python3 keygen(win/mac 通杀)",
     date: "2025-03-14",
     excerpt: "之前做过该软件的分析, 不过似乎作者与我心有灵犀, 之前的 patch 已经过期了;今天试一下新的方案, 逆向 license 文件的加解密, 并且完成 keygen",
