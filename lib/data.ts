@@ -29,7 +29,7 @@ export const content = {
       skills: ["C/C++", "Assembly", "Reverse Engineering", "JAVA", "HOOK", "Python"],
       interests: [
         { icon: "", text: "The development engineer of interest" },
-        { icon: "", text: "I want everyone to know me, yet I don't know who I am." },
+        { icon: "", text: "I want everyone to know me, but no one knows who I am." },
         { icon: "", text: "Open-source software developer" }
       ],
     },
@@ -64,7 +64,7 @@ export const content = {
       skills: ["C/C++", "反汇编", "逆向分析", "JAVA", "HOOK", "Python"],
       interests: [
         { icon: "", text: "一个兴趣使然的开发" },
-        { icon: "", text: "想让所有人认识我,却不知道我是谁" },
+        { icon: "", text: "想让所有人认识我,但不知道我是谁" },
         { icon: "", text: "开源软件开发者" }
       ],
     },
