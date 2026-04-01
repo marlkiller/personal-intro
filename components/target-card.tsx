@@ -22,6 +22,7 @@ interface TargetCardProps {
   isUnderAttack: boolean;
   activeAttackSkill: SkillType | null;
   isDestroyed: boolean;
+  destroyedBySkill: SkillType | null;
 }
 
 export function TargetCard({
@@ -39,10 +40,11 @@ export function TargetCard({
   isUnderAttack,
   activeAttackSkill,
   isDestroyed,
+  destroyedBySkill,
 }: TargetCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const config = skillsConfig[selectedSkill];
-  
+
   const tagDelays = useMemo(() => tags.map((_, i) => 800 + i * 100), [tags]);
 
   const handleClick = () => {
@@ -51,7 +53,8 @@ export function TargetCard({
   };
 
   if (isDestroyed) {
-    const attackConfig = activeAttackSkill ? skillsConfig[activeAttackSkill] : null;
+    const skillToShow = destroyedBySkill || activeAttackSkill;
+    const attackConfig = skillToShow ? skillsConfig[skillToShow] : null;
     return (
       <div
         className={cn(

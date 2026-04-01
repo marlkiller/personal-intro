@@ -240,7 +240,7 @@ export function SkillTree({ selectedSkill, onSkillSelect }: SkillTreeProps) {
               transform: isExpanded && !isCollapsing ? "translateY(0)" : "translateY(-5px)",
               transitionDelay: "150ms",
             }}>
-              {isExpanded ? "点击收起" : "点击展开技能列表"}
+              {isExpanded ? "点击收起" : "点击查看技能"}
             </p>
           </div>
         </div>

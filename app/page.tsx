@@ -21,7 +21,7 @@ import { Loader2, RefreshCw } from "lucide-react";
 
 export default function Home() {
   const [selectedSkill, setSelectedSkill] = useState<SkillType>("java");
-  const { activeSkill, attackingTarget, destroyedTargets, attack, resetTargets } = useSkillAttack();
+  const { activeSkill, attackingTarget, destroyedTargets, getDestroyedSkill, attack, resetTargets } = useSkillAttack();
   
   // GitHub 项目状态
   const [projects, setProjects] = useState<Project[]>(localProjects);
@@ -143,6 +143,7 @@ export default function Home() {
                 isUnderAttack={attackingTarget === article.id}
                 activeAttackSkill={activeSkill}
                 isDestroyed={destroyedTargets.has(article.id)}
+                destroyedBySkill={getDestroyedSkill(article.id)}
               />
             ))}
           </div>
@@ -196,6 +197,7 @@ export default function Home() {
                   isUnderAttack={attackingTarget === project.id}
                   activeAttackSkill={activeSkill}
                   isDestroyed={destroyedTargets.has(project.id)}
+                  destroyedBySkill={getDestroyedSkill(project.id)}
                 />
               ))}
             </div>

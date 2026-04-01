@@ -11,16 +11,18 @@ export function useSkillAttack() {
   const [activeSkill, setActiveSkill] = useState<SkillType | null>(null);
   const [attackingTarget, setAttackingTarget] = useState<string | null>(null);
   const [destroyedTargets, setDestroyedTargets] = useState<Set<string>>(new Set());
+  const [destroyedTargetSkills, setDestroyedTargetSkills] = useState<Map<string, SkillType>>(new Map());
 
   const attack = useCallback((skill: SkillType, targetId: string) => {
     if (destroyedTargets.has(targetId)) return;
-    
+
     setActiveSkill(skill);
     setAttackingTarget(targetId);
 
     // 动画持续时间后标记为已销毁
     setTimeout(() => {
       setDestroyedTargets((prev) => new Set([...prev, targetId]));
+      setDestroyedTargetSkills((prev) => new Map([...prev, [targetId, skill]]));
       setActiveSkill(null);
       setAttackingTarget(null);
     }, 2500);
@@ -28,9 +30,14 @@ export function useSkillAttack() {
 
   const resetTargets = useCallback(() => {
     setDestroyedTargets(new Set());
+    setDestroyedTargetSkills(new Map());
     setActiveSkill(null);
     setAttackingTarget(null);
   }, []);
 
-  return { activeSkill, attackingTarget, destroyedTargets, attack, resetTargets };
+  const getDestroyedSkill = useCallback((targetId: string): SkillType | null => {
+    return destroyedTargetSkills.get(targetId) || null;
+  }, [destroyedTargetSkills]);
+
+  return { activeSkill, attackingTarget, destroyedTargets, getDestroyedSkill, attack, resetTargets };
 }
