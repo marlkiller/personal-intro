@@ -82,7 +82,7 @@ export function TargetCard({
       ref={cardRef}
       onClick={handleClick}
       className={cn(
-        "group relative cursor-crosshair overflow-hidden rounded-xl border border-border/50 bg-card p-6 transition-all duration-300",
+        "group relative cursor-crosshair overflow-hidden rounded-xl border border-border/50 bg-card/80 p-6 transition-all duration-300",
         "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10",
         isUnderAttack && "ring-2 ring-offset-2 ring-offset-background pointer-events-none"
       )}

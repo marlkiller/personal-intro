@@ -6,6 +6,7 @@ import { SkillBar } from "@/components/skill-bar";
 import { SkillTree } from "@/components/skill-tree";
 import { TargetCard } from "@/components/target-card";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { DragonCanvas } from "@/components/dragon-canvas";
 import { useSkillAttack } from "@/components/skill-effects";
 import {
   SkillType,
@@ -66,7 +67,10 @@ export default function Home() {
   const destroyedCount = destroyedTargets.size;
 
   return (
-    <main className="min-h-screen pb-32">
+    <main className="min-h-screen pb-32 relative">
+      {/* 飞龙 Canvas - 满屏幕飞 */}
+      <DragonCanvas />
+
       <HeroSection />
 
       {/* 主题切换按钮 */}

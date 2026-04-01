@@ -58,19 +58,19 @@ export function HeroSection() {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-card text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-card/60 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-card text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-card/60 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
               </a>
-              <span className="flex items-center gap-2 rounded-lg border border-border/50 bg-card px-3 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2 rounded-lg border border-border/50 bg-card/60 px-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
                 {personalInfo.location}
               </span>
