@@ -236,7 +236,7 @@ export function SkillTree({ selectedSkill, onSkillSelect }: SkillTreeProps) {
               />
             </h2>
             <p className="text-xs text-muted-foreground transition-all duration-300" style={{
-              opacity: isExpanded && !isCollapsing ? 1 : 0,
+              opacity: 1,
               transform: isExpanded && !isCollapsing ? "translateY(0)" : "translateY(-5px)",
               transitionDelay: "150ms",
             }}>
