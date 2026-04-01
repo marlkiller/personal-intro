@@ -49,7 +49,7 @@ export function HeroSection() {
               {personalInfo.title}
             </p>
             <p className="mb-6 max-w-xl leading-relaxed text-muted-foreground">
-              {personalInfo.bio}。选择你的技能，点击目标，观看 Pretext 风格的文字消散特效！
+              {personalInfo.bio}。选择你的技能，点击目标开始战斗！
             </p>
 
             {/* Social links */}

@@ -5,15 +5,16 @@ import { HeroSection } from "@/components/hero-section";
 import { SkillBar } from "@/components/skill-bar";
 import { SkillTree } from "@/components/skill-tree";
 import { TargetCard } from "@/components/target-card";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { useSkillAttack } from "@/components/skill-effects";
-import { 
-  SkillType, 
-  skillsConfig, 
-  articles, 
-  localProjects, 
-  githubUsername, 
+import {
+  SkillType,
+  skillsConfig,
+  articles,
+  localProjects,
+  githubUsername,
   useLocalProjects,
-  Project 
+  Project
 } from "@/lib/data";
 import { fetchGithubRepos, GithubError } from "@/lib/github";
 import { Loader2, RefreshCw } from "lucide-react";
@@ -68,6 +69,11 @@ export default function Home() {
     <main className="min-h-screen pb-32">
       <HeroSection />
 
+      {/* 主题切换按钮 */}
+      <div className="fixed right-4 top-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <div className="mx-auto max-w-6xl px-6">
         {/* Skills Section */}
         <section className="mb-16">
@@ -89,7 +95,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-bold text-foreground">战斗指南</h3>
               <p className="text-sm text-muted-foreground">
-                选择一个编程技能，然后点击下方的文章或项目卡片进行攻击，观看 Pretext 风格的文字消散特效！
+                选择一个编程技能，然后点击下方的文章或项目卡片进行攻击！
               </p>
             </div>
             <div className="flex items-center gap-4">
