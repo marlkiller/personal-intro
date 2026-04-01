@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Github, Mail, MapPin } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
@@ -17,10 +18,14 @@ export function HeroSection() {
         <div className="flex flex-col items-start gap-8 md:flex-row md:items-center">
           {/* Avatar */}
           <div className="relative">
-            <div className="h-32 w-32 overflow-hidden rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-[#f89820]/20 via-primary/20 to-[#3776ab]/20">
-              <div className="flex h-full w-full items-center justify-center text-6xl">
-                🧙‍♂️
-              </div>
+            <div className="relative h-32 w-32 overflow-hidden rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-[#f89820]/20 via-primary/20 to-[#3776ab]/20">
+              <Image
+                src="https://avatars.githubusercontent.com/u/25897113?v=4"
+                alt={personalInfo.name}
+                fill
+                className="object-cover"
+                unoptimized
+              />
             </div>
             <div className="absolute -bottom-2 -right-2 rounded-lg bg-gradient-to-r from-[#f89820] to-[#61dafb] px-3 py-1 text-xs font-bold text-white shadow-lg">
               Lv.99
