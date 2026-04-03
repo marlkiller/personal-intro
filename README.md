@@ -100,6 +100,13 @@ personal-intro/
     └── github.ts          # GitHub API 集成
 ```
 
+## 🙏 致谢
+
+本项目的文字重排效果参考了以下优秀项目：
+
+- [chenglou/pretext](https://github.com/chenglou/pretext) - 文字扰动效果库
+- [0xNyk/pretext-playground](https://github.com/0xNyk/pretext-playground) - pretext 的 React 实现
+
 ## 🌐 在线演示
 
 访问 [https://voidm.com](https://voidm.com) 查看在线演示。
