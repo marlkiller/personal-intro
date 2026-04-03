@@ -81,11 +81,13 @@ class TextAvoidanceManager {
   private throttleMs = 32; // ~30fps
 
   constructor() {
-    // 订阅龙位置（全局只订阅一次）
-    this.unsubscribeDragon = dragonManager.subscribe((pos) => {
-      this.dragonPosition = pos;
-      this.scheduleUpdate();
-    });
+    // 只在客户端订阅龙位置
+    if (typeof window !== 'undefined') {
+      this.unsubscribeDragon = dragonManager.subscribe((pos) => {
+        this.dragonPosition = pos;
+        this.scheduleUpdate();
+      });
+    }
   }
 
   // 注册文字容器
@@ -119,6 +121,7 @@ class TextAvoidanceManager {
 
   // 调度批量更新
   private scheduleUpdate() {
+    if (typeof window === 'undefined') return;
     if (this.rafId !== null) return;
 
     this.rafId = requestAnimationFrame(() => {
