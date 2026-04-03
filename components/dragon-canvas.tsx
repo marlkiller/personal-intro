@@ -295,12 +295,19 @@ export function DragonCanvas() {
       ctx.fillText("⊙", eyeX, eyeY);
 
       // 更新全局龙位置（供文字重排使用）
-      const dragonSegments: DragonSegmentType[] = dragon.map(seg => ({
-        x: seg.x,
-        y: seg.y,
-        size: seg.size * 0.5, // 缩小碰撞体积，让效果更好
-      }));
-      dragonManager.update(dragonSegments);
+      // 优化：只在龙位置真正变化时才更新，减少不必要的通知
+      const dragonHead = dragon[0];
+      const lastHead = dragonManager.getLastPosition();
+      if (lastHead.segments.length === 0 || 
+          Math.abs(dragonHead.x - lastHead.segments[0].x) > 1 || 
+          Math.abs(dragonHead.y - lastHead.segments[0].y) > 1) {
+        const dragonSegments: DragonSegmentType[] = dragon.map(seg => ({
+          x: seg.x,
+          y: seg.y,
+          size: seg.size * 0.5,
+        }));
+        dragonManager.update(dragonSegments);
+      }
 
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -318,7 +325,7 @@ export function DragonCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10"
+      className="fixed inset-0 pointer-events-none z-50"
       style={{ touchAction: "none" }}
     />
   );

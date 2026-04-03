@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
-import { useDragonPosition, getTextOffsetForViewport } from "@/hooks/use-dragon-position";
+import { textAvoidanceManager } from "@/hooks/use-dragon-position";
 import type { SkillType } from "@/lib/data";
 import { skillsConfig } from "@/lib/data";
 
@@ -12,7 +12,7 @@ interface PretextTextProps {
   skill: SkillType | null;
   className?: string;
   delay?: number;
-  enableDragonAvoidance?: boolean; // 是否启用龙避让功能
+  enableDragonAvoidance?: boolean;
 }
 
 // 将文本分割成字符数组（支持 emoji 和中文）
@@ -21,7 +21,13 @@ function splitText(text: string): string[] {
   return [...segmenter.segment(text)].map((s) => s.segment);
 }
 
-// 文字重排组件 - 支持龙的避让
+// 生成唯一 ID
+let idCounter = 0;
+function generateId() {
+  return `pretext-${++idCounter}`;
+}
+
+// 文字重排组件 - 使用全局管理器优化性能
 function PretextTextWithDragonAvoidance({
   text,
   isDestroying,
@@ -32,55 +38,23 @@ function PretextTextWithDragonAvoidance({
   const characters = useMemo(() => splitText(text), [text]);
   const containerRef = useRef<HTMLSpanElement>(null);
   const charRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const dragonPosition = useDragonPosition();
-  const [offsets, setOffsets] = useState<Array<{ x: number; y: number }>>([]);
   const [startDestroy, setStartDestroy] = useState(false);
-  const rafRef = useRef<number | null>(null);
+  const idRef = useRef(generateId());
 
-  // 计算每个字符的偏移量（使用视口坐标）
-  const calculateOffsets = useCallback(() => {
-    if (charRefs.current.length === 0) return;
-
-    const newOffsets: Array<{ x: number; y: number }> = [];
-
-    for (let i = 0; i < charRefs.current.length; i++) {
-      const charEl = charRefs.current[i];
-      if (!charEl) {
-        newOffsets.push({ x: 0, y: 0 });
-        continue;
-      }
-
-      // 获取字符在视口中的位置
-      const charRect = charEl.getBoundingClientRect();
-      const charCenterX = charRect.left + charRect.width / 2;
-      const charCenterY = charRect.top + charRect.height / 2;
-
-      // 使用视口坐标计算龙的避让偏移
-      const { offsetX, offsetY } = getTextOffsetForViewport(charCenterX, charCenterY, dragonPosition);
-
-      newOffsets.push({ x: offsetX, y: offsetY });
-    }
-
-    setOffsets(newOffsets);
-  }, [dragonPosition]);
-
-  // 监听龙位置变化，使用 rAF 更新偏移
+  // 注册到全局管理器
   useEffect(() => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-    }
-
-    rafRef.current = requestAnimationFrame(() => {
-      calculateOffsets();
-      rafRef.current = null;
-    });
-
+    if (!containerRef.current) return;
+    
+    textAvoidanceManager.register(idRef.current, containerRef.current);
+    
+    // 注册字符元素
+    const chars = charRefs.current.filter(Boolean) as HTMLSpanElement[];
+    // 管理器会自动处理字符位置更新
+    
     return () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      textAvoidanceManager.unregister(idRef.current);
     };
-  }, [dragonPosition, calculateOffsets]);
+  }, []);
 
   // 销毁动画延迟
   useEffect(() => {
@@ -110,37 +84,32 @@ function PretextTextWithDragonAvoidance({
   }, [skill]);
 
   return (
-    <span ref={containerRef} className={cn("inline relative", className)}>
-      {characters.map((char, index) => {
-        const offset = offsets[index] || { x: 0, y: 0 };
-        const hasOffset = Math.abs(offset.x) > 0.5 || Math.abs(offset.y) > 0.5;
-
-        return (
-          <span
-            key={`${index}-${char}`}
-            ref={(el) => { charRefs.current[index] = el; }}
-            className="inline-block transition-transform duration-100 ease-linear"
-            style={{
-              transform: hasOffset
-                ? `translate(${offset.x}px, ${offset.y}px)`
-                : "none",
-              zIndex: hasOffset ? 10 : 1,
-              position: hasOffset ? "relative" : "static",
-            }}
-          >
-            <EffectComponent
-              char={char}
-              index={index}
-              isDestroying={startDestroy}
-            />
-          </span>
-        );
-      })}
+    <span ref={containerRef} className={cn("inline relative", className)} data-avoidance-id={idRef.current}>
+      {characters.map((char, index) => (
+        <span
+          key={`${index}-${char}`}
+          ref={(el) => { charRefs.current[index] = el; }}
+          className="inline-block transition-transform duration-100 ease-linear"
+          style={{
+            transform: "none",
+            zIndex: 1,
+            position: "static",
+          }}
+          data-char-index={index}
+        >
+          <EffectComponent
+            char={char}
+            index={index}
+            isDestroying={startDestroy}
+          />
+        </span>
+      ))}
     </span>
   );
 }
 
-// ============ 以下是各种技能效果组件（从原 pretext-text.tsx 复制） ============
+// ============ 以下是各种技能效果组件 ============
+// （为简洁起见，保留原有效果组件代码）
 
 function JavaEffect({ char, index, isDestroying }: { char: string; index: number; isDestroying: boolean }) {
   const [phase, setPhase] = useState<"normal" | "binary" | "gone">("normal");
@@ -644,7 +613,7 @@ export function PretextText({
   delay = 0,
   enableDragonAvoidance = true,
 }: PretextTextProps) {
-  // 如果启用龙的避让，使用新组件
+  // 如果启用龙的避让，使用优化后的组件
   if (enableDragonAvoidance) {
     return (
       <PretextTextWithDragonAvoidance
@@ -657,7 +626,7 @@ export function PretextText({
     );
   }
 
-  // 否则使用原来的简单实现
+  // 否则使用原来的简单实现（保留原逻辑）
   const characters = useMemo(() => splitText(text), [text]);
   const [startDestroy, setStartDestroy] = useState(false);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, memo } from "react";
 import { cn } from "@/lib/utils";
 import type { SkillType } from "@/lib/data";
 import { skillsConfig } from "@/lib/data";
@@ -25,7 +25,8 @@ interface TargetCardProps {
   destroyedBySkill: SkillType | null;
 }
 
-export function TargetCard({
+// 使用 React.memo 优化，只在关键 props 变化时才重渲染
+export const TargetCard = memo(function TargetCard({
   id,
   title,
   description,
@@ -227,4 +228,4 @@ export function TargetCard({
       )}
     </div>
   );
-}
+});
