@@ -102,11 +102,7 @@ personal-intro/
 
 ## 🌐 在线演示
 
-访问 [https://personal-intro.vercel.app](https://personal-intro.vercel.app) 查看在线演示。
-
-## 📝 License
-
-MIT License
+访问 [https://voidm.com](https://voidm.com) 查看在线演示。
 
 ## 👤 作者
 
