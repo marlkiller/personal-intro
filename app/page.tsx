@@ -7,6 +7,7 @@ import { SkillTree } from "@/components/skill-tree";
 import { TargetCard } from "@/components/target-card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { DragonCanvas } from "@/components/dragon-canvas";
+import { DragonDebug } from "@/components/dragon-debug";
 import { useSkillAttack } from "@/components/skill-effects";
 import {
   SkillType,
@@ -70,6 +71,9 @@ export default function Home() {
     <main className="min-h-screen pb-32 relative">
       {/* 飞龙 Canvas - 满屏幕飞 */}
       <DragonCanvas />
+      
+      {/* 调试：显示龙的位置 */}
+      <DragonDebug />
 
       <HeroSection />
 

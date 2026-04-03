@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { dragonManager, type DragonSegment as DragonSegmentType } from "@/hooks/use-dragon-position";
 
 interface DragonSegment {
   x: number;
@@ -24,7 +25,7 @@ interface Particle {
 
 export function DragonCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const dragonRef = useRef<DragonSegment[]>([]);
   const particlesRef = useRef<Particle[]>([]);
   const timeRef = useRef(0);
@@ -292,6 +293,14 @@ export function DragonCanvas() {
       ctx.fillStyle = "#ffcc00";
       ctx.font = "16px \"Courier New\", monospace";
       ctx.fillText("⊙", eyeX, eyeY);
+
+      // 更新全局龙位置（供文字重排使用）
+      const dragonSegments: DragonSegmentType[] = dragon.map(seg => ({
+        x: seg.x,
+        y: seg.y,
+        size: seg.size * 0.5, // 缩小碰撞体积，让效果更好
+      }));
+      dragonManager.update(dragonSegments);
 
       animationRef.current = requestAnimationFrame(animate);
     };

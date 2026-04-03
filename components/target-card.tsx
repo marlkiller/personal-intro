@@ -4,7 +4,7 @@ import { useMemo, useRef } from "react";
 import { cn } from "@/lib/utils";
 import type { SkillType } from "@/lib/data";
 import { skillsConfig } from "@/lib/data";
-import { PretextText } from "./pretext-text";
+import { PretextText } from "./pretext-text-dragon";
 import { ExternalLink, FileText, GitFork, Github, Star } from "lucide-react";
 
 interface TargetCardProps {
